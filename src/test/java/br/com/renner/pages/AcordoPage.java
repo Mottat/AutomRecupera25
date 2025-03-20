@@ -1,0 +1,51 @@
+package br.com.renner.pages;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class AcordoPage {
+
+    @FindBy(id = "cmdDesmarcarDividas")
+    public static WebElement unmarkDebtCheckbox;
+
+    @FindBy(id = "objLista005Header_00006")
+    public static WebElement paymentDateCalendar;
+
+    @FindBy(className = "CldObjDiaHoje")
+    public static WebElement selectToday;
+
+    @FindBy(xpath = "//*[@class='CldObjDiaHoje']/following::input[@class='CldObjDiasSemana'][1]")
+    public static WebElement selectTomorrow;
+
+    @FindBy(id = "objLista005Corpo_00000_00000")
+    public static WebElement checkboxSelectDebt;
+
+    @FindBy(id = "cmdMarcarDividas")
+    public static WebElement btnSelectAllDebts;
+
+    @FindBy(id = "cmdParcelar")
+    public static WebElement btnInstallment;
+
+    @FindBy(id = "cmdAumentaParc")
+    public static WebElement btnIncreaseParcel;
+
+    @FindBy(id = "cmdCalcular")
+    public static WebElement btnCalculate;
+
+    @FindBy(id = "dtgParce_TextBox25_0")
+    public static WebElement txtValidateParcel;
+
+    @FindBy(id = "cmdConfirmar")
+    public static WebElement btnConfirm;
+
+    @FindBy(id = "txtComplementoOcorrencia")
+    public static WebElement txtInsertOccurrence;
+
+    @FindBy(id = "cmdOkComplOcorrencia")
+    public static WebElement btnConfirmOccurrence;
+
+    @FindBy(id = "objLista005Corpo_00000_00001")
+    public static WebElement txtValidateInstallment;
+
+
+}
