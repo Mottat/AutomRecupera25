@@ -6,7 +6,7 @@ Funcionalidade: Cancelar acordo
   Contexto:
     Dado que estou no recupera
 
-  @CancelaAcordoCliente
+  @EsquemaCancelaAcordoCliente
   Esquema do Cenario: Cancelar acordo
     Quando pesquiso cliente com acordo "<cliente>"
     E cancelo acordo

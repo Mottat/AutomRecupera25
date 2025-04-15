@@ -6,7 +6,7 @@ Funcionalidade: Consulta Cliente
   Contexto:
     Dado que estou na pagina do recupera
 
-  @ConsultaCliente
+  @EsquemaConsultaCliente
   Esquema do Cenario: Consulta cliente com divida
     Quando Clico em operacao
     E pesquiso pelo cliente "<cliente>"

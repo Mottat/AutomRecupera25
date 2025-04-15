@@ -47,6 +47,7 @@ public class RennerTools {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             WebElement iframe1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cframe1")));
             driver.switchTo().frame(iframe1);
+            driver.manage().window().fullscreen();
 
         } catch (Exception e) {
             System.out.println("Erro ao tentar trocar para o iframe 'cframe1': " + e.getMessage());
@@ -58,6 +59,7 @@ public class RennerTools {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             WebElement iframe2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cframe3")));
             driver.switchTo().frame(iframe2);
+            driver.manage().window().fullscreen();
             System.out.println("Iframe 'cframe2' selecionado com sucesso!");
 
         } catch (Exception e) {

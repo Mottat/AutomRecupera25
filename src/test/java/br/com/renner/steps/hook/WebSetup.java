@@ -21,9 +21,13 @@ import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.net.MalformedURLException;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
@@ -44,6 +48,7 @@ public class WebSetup {
     ReportiumClient reportiumClient;
     private int indexStep = 0;
 
+
     @AfterAll()
     public static void teardDownAll() {
         if (driver != null) {
@@ -53,7 +58,7 @@ public class WebSetup {
     }
 
     @Before()
-    public void initiate(Scenario scenarioTest) {
+    public void initiate(Scenario scenarioTest) throws MalformedURLException {
 
         System.out.printf("TESTE %s is started%n", scenarioTest.getName());
         scenarioName = scenarioTest.getName().replaceAll("-", " ");
@@ -61,156 +66,157 @@ public class WebSetup {
         if (build.isEmpty()) {
             build = "Web-YouCom-Regressivo-" + getExecutionAmbiente();
         }
-        if (driver == null)
-            switch (getExecutionNavegador()) {
-                default:
-                case "chrome": {
-                    System.out.println("Chrome");
-                    ChromeOptions chromeOptions = new ChromeOptions();
-                    chromeOptions.addArguments("--window-size=1366,768");
-                    chromeOptions.addArguments("--disable-notifications");
 
-                    WebDriverManager.chromedriver()
-                            .cachePath("src/test/resources/drivers")
-                            .forceDownload()
-                            .setup();
+        switch (getExecutionNavegador()) {
+            case "chrome": {
+                System.out.println("Chrome");
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--window-size=1366,768");
+                chromeOptions.addArguments("--disable-notifications");
 
-                    seleniumRobotsTool = new SeleniumRobotsBuilder()
-                            .timeoutSeconds(1)
-                            .pollingSeconds(1)
-                            .setChromeOptions(chromeOptions)
-                            .build();
-                    break;
-                }
-                case "edge": {
-                    SeleniumRobotsBuilder seleniumRobotsBuild = new SeleniumRobotsBuilder()
-                            .pollingSeconds(60)
-                            .timeoutSeconds(30)
-                            .pollingSeconds(5)
-                            .edge();
-                    WebDriverManager.edgedriver().setup();
-                    seleniumRobotsTool = seleniumRobotsBuild.build();
-                    break;
-                }
-                case "opera": {
-                    SeleniumRobotsBuilder seleniumRobotsBuild = new SeleniumRobotsBuilder()
-                            .pollingSeconds(60)
-                            .timeoutSeconds(30)
-                            .pollingSeconds(5);
-                    WebDriverManager.operadriver().setup();
-                    seleniumRobotsTool = seleniumRobotsBuild.build();
-                    break;
-                }
-                case "firefox": {
-                    SeleniumRobotsBuilder seleniumRobotsBuild = new SeleniumRobotsBuilder()
-                            .pollingSeconds(60)
-                            .timeoutSeconds(30)
-                            .pollingSeconds(5)
-                            .firefox();
+                WebDriverManager.chromedriver()
+                        .cachePath("src/test/resources/drivers")
+                        .setup();
 
-                    WebDriverManager.firefoxdriver().setup();
-                    seleniumRobotsTool = seleniumRobotsBuild.build();
-                    break;
-                }
-                case "remote": {
-                    SeleniumRobotsBuilder seleniumRobotsBuild = new SeleniumRobotsBuilder()
-                            .pollingSeconds(60)
-                            .timeoutSeconds(30)
-                            .pollingSeconds(5)
-                            .remoteExec("http://localhost:4444/wd/hub")
-                            .chrome();
-                    WebDriverManager.chromedriver().setup();
-                    HashMap<String, Object> chromePrefs = new HashMap<>();
-                    chromePrefs.put("profile.default_content_settings.popups", 0);
-                    chromePrefs.put("download.prompt_for_download", "false");
-                    chromePrefs.put("plugins.plugins_disabled", new String[]{"Adobe Flash Player", "Chrome PDF Viewer"});
-                    ChromeOptions options = new ChromeOptions();
-                    options.setExperimentalOption("prefs", chromePrefs);
-                    options.addArguments("--lang=pt");
-                    options.addArguments("--no-sandbox");
-                    options.addArguments("--disable-dev-shm-usage");
-                    options.addArguments("--aggressive-cache-discard");
-                    options.addArguments("--disable-cache");
-                    options.addArguments("--disable-application-cache");
-                    options.addArguments("--disable-offline-load-stale-cache");
-                    options.addArguments("--disk-cache-size=0");
-                    options.addArguments("--disable-gpu");
-                    options.addArguments("--dns-prefetch-disable");
-                    options.addArguments("--no-proxy-server");
-                    options.addArguments("--log-level=3");
-                    options.addArguments("--silent");
-                    options.addArguments("--disable-browser-side-navigation");
-//                    options.setPageLoadStrategy(PageLoadStrategy.EAGER);
-                    options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-                    options.setAcceptInsecureCerts(true);
-                    System.setProperty("webdriver.chrome.silentOutput", "true");
-                    seleniumRobotsTool = seleniumRobotsBuild.setChromeOptions(options).build();
-                    break;
-                }
-                case "perfecto": {
-                    SeleniumRobotsBuilder seleniumRobotsBuild = new SeleniumRobotsBuilder()
-                            .pollingSeconds(60)
-                            .timeoutSeconds(30)
-                            .pollingSeconds(5)
-                            .remoteExec(getUrlPerfecto())
-                            .chrome();
-                    WebDriverManager.chromedriver().setup();
-
-
-                    HashMap<String, Object> chromePrefs = new HashMap<>();
-                    chromePrefs.put("profile.default_content_settings.popups", 0);
-                    chromePrefs.put("download.prompt_for_download", "false");
-                    chromePrefs.put("plugins.plugins_disabled", new String[]{"Adobe Flash Player", "Chrome PDF Viewer"});
-                    ChromeOptions options = new ChromeOptions();
-                    options.setExperimentalOption("prefs", chromePrefs);
-                    options.addArguments("--disable-notifications");
-                    options.addArguments("--lang=pt");
-                    options.addArguments("--no-sandbox");
-                    options.addArguments("--disable-dev-shm-usage");
-                    options.addArguments("--aggressive-cache-discard");
-                    options.addArguments("--disable-cache");
-                    options.addArguments("--disable-application-cache");
-                    options.addArguments("--disable-offline-load-stale-cache");
-                    options.addArguments("--disk-cache-size=0");
-                    options.addArguments("--disable-gpu");
-                    options.addArguments("--dns-prefetch-disable");
-                    options.addArguments("--no-proxy-server");
-                    options.addArguments("--log-level=3");
-                    options.addArguments("--silent");
-                    options.addArguments("--disable-browser-side-navigation");
-// Configurações específicas
-                    options.setAcceptInsecureCerts(true);
-//                    options.setPageLoadStrategy(PageLoadStrategy.EAGER);
-                    options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-
-// Opções adicionais
-                    Map<String, Object> perfectoOptions = new HashMap<>();
-                    perfectoOptions.put("browserName", "Chrome");
-                    perfectoOptions.put("browserVersion", "127");
-                    perfectoOptions.put("location", "US East");
-                    perfectoOptions.put("platformName", "Windows");
-                    perfectoOptions.put("platformVersion", "10");
-                    perfectoOptions.put("resolution", "1366x768");
-                    perfectoOptions.put("securityToken", getTokenPerfecto());
-
-                    options.setCapability("perfecto:options", perfectoOptions);
-                    System.setProperty("webdriver.chrome.silentOutput", "true");
-                    seleniumRobotsTool = seleniumRobotsBuild.setChromeOptions(options).build();
-
-
-                    indexStep = 0;
-
-
-                    break;
-                }
+                seleniumRobotsTool = new SeleniumRobotsBuilder()
+                        .timeoutSeconds(1)
+                        .pollingSeconds(1)
+                        .setChromeOptions(chromeOptions)
+                        .build();
+                driver = seleniumRobotsTool.getDriver();
+                break;
             }
+            case "edge": {
+                System.out.println("Edge");
+                WebDriverManager.edgedriver().setup();
+                driver = new EdgeDriver();
+                seleniumRobotsTool = new SeleniumRobotsBuilder()
+                        .pollingSeconds(5)
+                        .timeoutSeconds(30)
+                        .edge()
+                        .build();
+                break;
+            }
+            case "opera": {
+                System.out.println("Opera");
+                WebDriverManager.operadriver().setup();
+                WebDriverManager.operadriver().setup();
+                seleniumRobotsTool = new SeleniumRobotsBuilder()
+                        .pollingSeconds(5)
+                        .timeoutSeconds(30)
+                        .build();
+                break;
+            }
+            case "firefox": {
+                System.out.println("Firefox");
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+                seleniumRobotsTool = new SeleniumRobotsBuilder()
+                        .pollingSeconds(5)
+                        .timeoutSeconds(30)
+                        .firefox()
+                        .build();
+                break;
+            }
+            case "remote": {
+                System.out.println("Remote Chrome");
+                WebDriverManager.chromedriver().setup();
+                HashMap<String, Object> chromePrefs = new HashMap<>();
+                chromePrefs.put("profile.default_content_settings.popups", 0);
+                chromePrefs.put("download.prompt_for_download", "false");
+                chromePrefs.put("plugins.plugins_disabled", new String[]{"Adobe Flash Player", "Chrome PDF Viewer"});
+                ChromeOptions options = new ChromeOptions();
+                options.setExperimentalOption("prefs", chromePrefs);
+                options.addArguments("--lang=pt");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
+                options.addArguments("--aggressive-cache-discard");
+                options.addArguments("--disable-cache");
+                options.addArguments("--disable-application-cache");
+                options.addArguments("--disable-offline-load-stale-cache");
+                options.addArguments("--disk-cache-size=0");
+                options.addArguments("--disable-gpu");
+                options.addArguments("--dns-prefetch-disable");
+                options.addArguments("--no-proxy-server");
+                options.addArguments("--log-level=3");
+                options.addArguments("--silent");
+                options.addArguments("--disable-browser-side-navigation");
+                options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                options.setAcceptInsecureCerts(true);
+                System.setProperty("webdriver.chrome.silentOutput", "true");
+
+                driver = new RemoteWebDriver(new java.net.URL("http://localhost:4444/wd/hub"), options);
+                seleniumRobotsTool = new SeleniumRobotsBuilder()
+                        .pollingSeconds(5)
+                        .timeoutSeconds(30)
+                        .remoteExec("http://localhost:4444/wd/hub")
+                        .chrome()
+                        .setChromeOptions(options)
+                        .build();
+                break;
+            }
+            case "perfecto": {
+                System.out.println("Perfecto Chrome");
+                WebDriverManager.chromedriver().setup();
+                HashMap<String, Object> chromePrefs = new HashMap<>();
+                chromePrefs.put("profile.default_content_settings.popups", 0);
+                chromePrefs.put("download.prompt_for_download", "false");
+                chromePrefs.put("plugins.plugins_disabled", new String[]{"Adobe Flash Player", "Chrome PDF Viewer"});
+                ChromeOptions options = new ChromeOptions();
+                options.setExperimentalOption("prefs", chromePrefs);
+                options.addArguments("--disable-notifications");
+                options.addArguments("--lang=pt");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
+                options.addArguments("--aggressive-cache-discard");
+                options.addArguments("--disable-cache");
+                options.addArguments("--disable-application-cache");
+                options.addArguments("--disable-offline-load-stale-cache");
+                options.addArguments("--disk-cache-size=0");
+                options.addArguments("--disable-gpu");
+                options.addArguments("--dns-prefetch-disable");
+                options.addArguments("--no-proxy-server");
+                options.addArguments("--log-level=3");
+                options.addArguments("--silent");
+                options.addArguments("--disable-browser-side-navigation");
+                options.setAcceptInsecureCerts(true);
+                options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+
+                Map<String, Object> perfectoOptions = new HashMap<>();
+                perfectoOptions.put("browserName", "Chrome");
+                perfectoOptions.put("browserVersion", "127");
+                perfectoOptions.put("location", "US East");
+                perfectoOptions.put("platformName", "Windows");
+                perfectoOptions.put("platformVersion", "10");
+                perfectoOptions.put("resolution", "1366x768");
+                perfectoOptions.put("securityToken", getTokenPerfecto());
+
+                options.setCapability("perfecto:options", perfectoOptions);
+                System.setProperty("webdriver.chrome.silentOutput", "true");
+
+                driver = new RemoteWebDriver(new java.net.URL(getUrlPerfecto()), options);
+                seleniumRobotsTool = new SeleniumRobotsBuilder()
+                        .pollingSeconds(5)
+                        .timeoutSeconds(30)
+                        .remoteExec(getUrlPerfecto())
+                        .chrome()
+                        .setChromeOptions(options)
+                        .build();
+
+                indexStep = 0;
+                break;
+            }
+            default:
+                throw new IllegalArgumentException("Navegador '" + getExecutionNavegador() + "' não suportado.");
+        }
+
         if (getExecutionNavegador().equalsIgnoreCase("perfecto")) {
             String tags = String.join(", ", scenarioTest.getSourceTagNames());
             if (reportiumClient == null) {
                 PerfectoExecutionContext perfectoExecutionContext = new PerfectoExecutionContext.PerfectoExecutionContextBuilder()
                         .withProject(new Project("Web-YouCom-Regressivo-" + getExecutionAmbiente(), "1.0.0"))
                         .withJob(new Job(build, Integer.parseInt(System.getProperty("buildNumber", "1"))))
-                        .withWebDriver(seleniumRobotsTool.getDriver())
+                        .withWebDriver(driver)
                         .build();
                 reportiumClient = new ReportiumClientFactory().createPerfectoReportiumClient(perfectoExecutionContext);
             }
@@ -221,7 +227,6 @@ public class WebSetup {
                     .build());
         }
 
-        driver = seleniumRobotsTool.getDriver();
         driver.get(baseUrl);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
@@ -230,10 +235,9 @@ public class WebSetup {
             driver.switchTo().window(driver.getWindowHandle());
         }
 
-        if(getExecutionNavegador().equalsIgnoreCase("perfecto")){
+        if (getExecutionNavegador().equalsIgnoreCase("perfecto")) {
             driver.manage().window().maximize();
         }
-
     }
 
     @BeforeStep()
@@ -244,14 +248,11 @@ public class WebSetup {
     }
 
     public String getCurrentStep(Scenario scenario) {
-
         try {
-            // Get the delegate from the scenario
             Field delegate = scenario.getClass().getDeclaredField("delegate");
             delegate.setAccessible(true);
             TestCaseState testCaseState = (TestCaseState) delegate.get(scenario);
 
-            // Get the test case from the delegate
             Field testCaseField = testCaseState.getClass().getDeclaredField("testCase");
             testCaseField.setAccessible(true);
             TestCase testCase = (TestCase) testCaseField.get(testCaseState);
@@ -268,7 +269,6 @@ public class WebSetup {
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
-
         return "";
     }
 
@@ -281,7 +281,6 @@ public class WebSetup {
 
     @After()
     public void tearDown(Scenario scenario) throws IOException {
-
         System.out.printf("TESTE %s is %s%n", scenario.getName(), scenario.getStatus().name());
 
         if (driver != null) {
@@ -304,33 +303,31 @@ public class WebSetup {
         }
 
         try {
-            if (!driver.getWindowHandles().isEmpty()) {
+            if (driver != null && !driver.getWindowHandles().isEmpty()) {
                 deletarCookies();
             }
         } catch (NoSuchWindowException e) {
             System.out.println("Janela fechada, não foi possível deletar os cookies.");
         }
 
-
         try {
             if (driver != null && !driver.toString().contains("null")) {
                 driver.quit();
+                driver = null;
             }
         } catch (NoSuchSessionException e) {
             System.out.println("Sessão já foi finalizada.");
         }
+        indexStep = 0;
     }
 
     public String getFailureMessage(Scenario scenario) {
         Result failResult = null;
-
         try {
-            // Get the delegate from the scenario
             Field delegate = scenario.getClass().getDeclaredField("delegate");
             delegate.setAccessible(true);
             TestCaseState testCaseState = (TestCaseState) delegate.get(scenario);
 
-            // Get the test case results from the delegate
             Field stepResults = testCaseState.getClass().getDeclaredField("stepResults");
             stepResults.setAccessible(true);
             List<Result> results = (List<Result>) stepResults.get(testCaseState);
@@ -343,8 +340,6 @@ public class WebSetup {
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
-
         return (failResult != null) ? failResult.getError().getMessage() : "";
     }
-
 }

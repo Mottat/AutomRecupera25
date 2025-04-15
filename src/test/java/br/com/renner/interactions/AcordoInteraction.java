@@ -47,9 +47,17 @@ public class AcordoInteraction extends AcordoPage {
         btnInstallment.click();
     }
 
-    public void aumentParc(){
-        btnIncreaseParcel.click();
+    public void informarQtd(String quantidade){
+        inputTxtQtdParcelas.clear();
+        inputTxtQtdParcelas.sendKeys(quantidade);
     }
+
+        public void informarDesc(String desconto){
+        inputTxtDesconto.clear();
+        inputTxtDesconto.sendKeys(desconto);
+    }
+
+
 
     public void bntCalc(){
         btnCalculate.click();

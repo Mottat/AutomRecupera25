@@ -46,8 +46,10 @@ public class CancAcordoStep {
 
     @E("cancelo acordo")
     public void canceloAcordo() {
-        acordoInteraction.marcTodasDividas();
+        acordoInteraction.campoPagt();
+        acordoInteraction.selectDiaAmanha();
 
+        acordoInteraction.marcTodasDividas();
         acordoInteraction.bntParc();
 
         selectcCframe1();

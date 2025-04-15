@@ -29,6 +29,12 @@ public class AcordoPage {
     @FindBy(id = "cmdAumentaParc")
     public static WebElement btnIncreaseParcel;
 
+    @FindBy(id = "txtQtdParcelas")
+    public static WebElement inputTxtQtdParcelas;
+
+    @FindBy(id = "txtDesconto")
+    public static WebElement inputTxtDesconto;
+
     @FindBy(id = "cmdCalcular")
     public static WebElement btnCalculate;
 

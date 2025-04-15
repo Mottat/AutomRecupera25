@@ -1,6 +1,5 @@
 package br.com.renner.steps;
 
-import io.cucumber.java.Scenario;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
@@ -30,8 +29,8 @@ public class AcordoStep {
         consultaInteraction.menuOperacao();
     }
 
-    @E("faço um acordo {string}")
-    public void facoUmAcordo(String cliente) throws InterruptedException {
+    @E("faço um acordo {string} e {string} e {string}")
+    public void facoUmAcordo(String cliente, String quantidade, String desconto) throws InterruptedException {
         selectIfrmAppPrinc();
 
         consultaInteraction.codCliente(cliente);
@@ -57,7 +56,8 @@ public class AcordoStep {
 
         acordoInteraction.aguardarBotaoConfirmar();
 
-        acordoInteraction.aumentParc();
+        acordoInteraction.informarQtd(quantidade);
+        acordoInteraction.informarDesc(desconto);
         acordoInteraction.bntCalc();
         acordoInteraction.validarParcela();
 

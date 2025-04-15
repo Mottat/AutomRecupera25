@@ -9,29 +9,41 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "br.com.renner.steps",
 
+//        tags = "@Login or @ConsultaCCR or @AcordoAVistaSemDescontoCCR or @CancelaAcordoCCR",
+//        tags = "@Login or @ConsultaCBR or @AcordoAVistaSemDescontoCBR or @CancelaAcordoCBR",
+
 //        tags = "@Login",
+
 
         //// Somente CCR
 //        tags = "@ConsultaCCR",
-//        tags = "@AcordoCCR",
+//        tags = "@AcordoAVistaSemDescontoCCR",
+//        tags = "@AcordoAVistaComDescontoCCR",
+//        tags = "@AcordoParceladoSemDescontoCCR",
+//        tags = "@AcordoParceladoComDescontoCCR",
 //        tags = "@CancelaAcordoCCR",
-//        tags = "@ConsultaCCR and @AcordoCCR and @CancelaAcordoCCR",
+
 
         //// Somente CBR
 //        tags = "@ConsultaCBR",
-//        tags = "@AcordoCBR",
+//        tags = "@AcordoAVistaSemDescontoCBR",
+//        tags = "@AcordoAVistaComDescontoCBR",
+//        tags = "@AcordoParceladoSemDescontoCBR",
+//        tags = "@AcordoParceladoComDescontoCBR",
 //        tags = "@CancelaAcordoCBR",
-//        tags = "@ConsultaCBR and @AcordoCBR and @CancelaAcordoCBR",
+
 
         //// Cenários Esquemas
-        tags = "@ConsultaCliente",    // Esquema
-//        tags = "@AcordoCliente",    // Esquema
-//        tags = "@CancelaAcordoCliente",    // Esquema
+//        tags = "@EsquemaConsultaCliente",
+//        tags = "@EsquemaAcordoCliente",
+        tags = "@EsquemaCancelaAcordoCliente",
+
 
         //// Todos os cenários
 //        tags = "@Consulta",
 //        tags = "@Acordo",
 //        tags = "@CancelaAcordo",
+
 
         plugin = {
                 "pretty",
@@ -40,5 +52,4 @@ import org.junit.runner.RunWith;
                 "junit:reports/cucumber.xml",
         }
 )
-public class WebRunnerTest {
-}
+public class WebRunnerTest {}
