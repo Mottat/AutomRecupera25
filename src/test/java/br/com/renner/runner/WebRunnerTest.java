@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "br.com.renner.steps",
 
-//        tags = "@Login",
+        tags = "@Login",
 
         //// CCR
 //        tags = "@ConsultaCCR",

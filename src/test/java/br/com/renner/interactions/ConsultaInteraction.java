@@ -3,8 +3,6 @@ package br.com.renner.interactions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import br.com.renner.pages.ConsultaPage;
 
 import java.time.Duration;

@@ -54,8 +54,6 @@ public class AcordoStep {
 
         acordoInteraction.aguardarBotaoConfirmar();
 
-//        acordoInteraction.informarQtd(quantidade);
-//        acordoInteraction.informarDesc(desconto);
         acordoInteraction.informarQtd(String.valueOf(Integer.parseInt(quantidade)));
         acordoInteraction.informarDesc(String.valueOf(Integer.parseInt(desconto)));
 

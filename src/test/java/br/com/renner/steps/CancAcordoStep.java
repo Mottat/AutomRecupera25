@@ -79,7 +79,6 @@ public class CancAcordoStep {
 
         aguardar(1);
 
-
         // Sair da tela Operação
         consultaInteraction.botaoSair();
         defaultContent();

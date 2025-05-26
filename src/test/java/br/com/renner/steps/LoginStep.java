@@ -12,7 +12,6 @@ public class LoginStep {
     @Dado("que estou na pagina de login")
     public void queEstouNaPaginaDeLogin() {
         trocarParaNovaJanela();
-//        loginInteraction.aguardarCampoUser();
     }
 
     @Quando("faço login com dados validos")
