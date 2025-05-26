@@ -3,6 +3,8 @@ package br.com.renner.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class ConsultaPage {
 
     @FindBy(xpath = "//td[text()='Operação']")
@@ -16,6 +18,10 @@ public class ConsultaPage {
 
     @FindBy(name = "name=\"txtCpfCnpj\"")
     public static WebElement campoCPF;
+
+    @FindBy(xpath = "//td[text()='3']/parent::tr/td[1]/a")
+//    public static List<WebElement> selectCredor;
+    public static WebElement selectCredor;
 
     @FindBy(id = "tbcDivida")
     public static WebElement tapDebt;

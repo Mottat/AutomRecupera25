@@ -12,7 +12,7 @@ public class LoginStep {
     @Dado("que estou na pagina de login")
     public void queEstouNaPaginaDeLogin() {
         trocarParaNovaJanela();
-        loginInteraction.aguardarCampoUser();
+//        loginInteraction.aguardarCampoUser();
     }
 
     @Quando("faço login com dados validos")
@@ -22,7 +22,6 @@ public class LoginStep {
 
     @Entao("realizo login com sucesso")
     public void realizoLoginComSucesso() {
-        loginInteraction.aguardarBotaoSair();
         loginInteraction.clicarSair();
     }
 

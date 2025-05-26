@@ -71,6 +71,38 @@ public class RennerTools {
         driver.switchTo().defaultContent();
     }
 
+    public static void aguardar(int tempo) {
+        try {
+            Thread.sleep(tempo* 1000L);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String getJsonData(String key) {
+        org.json.JSONObject jsonData = loadJsonSanityFromFile();
+        return jsonData.getJSONObject(extractFeatureName(scenario.getUri().toString())).getString(key);
+    }
+
+    public static void esperarElementoVisivelClicavel(WebElement elemento) {
+        WebDriverWait wait = new WebDriverWait(driver, MAX_DURATION);
+        wait.until(ExpectedConditions.and(
+                ExpectedConditions.visibilityOf(elemento),
+                ExpectedConditions.elementToBeClickable(elemento)));
+
+    }
+
+    public static WebElement esperarElementoVisivel(WebElement elemento) {
+        WebDriverWait wait = new WebDriverWait(driver, MAX_DURATION);
+        wait.until(ExpectedConditions.visibilityOf(elemento));
+        return elemento;
+    }
+
+
+
+
+
+
     public static void tirarPrint(Scenario scenario) {
         try {
             if (driver != null && !driver.getWindowHandles().isEmpty()) {
@@ -121,6 +153,7 @@ public class RennerTools {
 
         return filePath.substring(lastSlashIndex + 1, featureExtensionIndex);
     }
+
     public static void scrollAteElemento(WebElement element) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].scrollIntoView({  behavior: 'auto',block: 'center',inline: 'center'})", element);
@@ -155,13 +188,6 @@ public class RennerTools {
         }
     }
 
-    public static void aguardar(int tempo) {
-        try {
-            Thread.sleep(tempo* 1000L);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public static void aguardarTelaDeLoad() {
         Wait<WebDriver> wait = new FluentWait<>(driver)
@@ -197,11 +223,6 @@ public class RennerTools {
                 .ignoring(NoSuchElementException.class);
 
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpathLocator)));
-    }
-
-    public static WebElement esperarElementoVisivel(WebElement elemento) {
-        WebDriverWait wait = new WebDriverWait(driver, MAX_DURATION);
-        return wait.until(ExpectedConditions.visibilityOf(elemento));
     }
 
     public static void clickByJavaScript(WebElement element) {
@@ -346,10 +367,6 @@ public class RennerTools {
         return numbers.toString();
     }
 
-    public static String getJsonData(String key) {
-        org.json.JSONObject jsonData = loadJsonSanityFromFile();
-        return jsonData.getJSONObject(extractFeatureName(scenario.getUri().toString())).getString(key);
-    }
     public static void setJsonData(String key, String value) {
         org.json.JSONObject jsonData = loadJsonSanityFromFile();
         jsonData.getJSONObject(extractFeatureName(scenario.getUri().toString())).put(key, value);
@@ -359,6 +376,7 @@ public class RennerTools {
             e.printStackTrace();
         }
     }
+
     private static org.json.JSONObject loadJsonSanityFromFile() {
         org.json.JSONObject jsonData = null;
         try {
@@ -368,13 +386,6 @@ public class RennerTools {
             e.printStackTrace();
         }
         return jsonData;
-    }
-
-    public static void esperarElementoVisivelClicavel(WebElement elemento) {
-        WebDriverWait wait = new WebDriverWait(driver, MAX_DURATION);
-        wait.until(ExpectedConditions.and(
-                ExpectedConditions.visibilityOf(elemento),
-                ExpectedConditions.elementToBeClickable(elemento)));
     }
 
     public static WebElement esperarElementoClicavel(WebElement elemento) {
@@ -388,6 +399,20 @@ public class RennerTools {
 
         WebElement uploadElement = driver.findElement(By.xpath("//input[@type='file'][@accept='image/jpeg,image/png,image/webp']"));
         uploadElement.sendKeys(caminhoArquivo);
+    }
+
+    public static void tratarAlertaSeExistir() {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+            Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+
+            String mensagem = alert.getText();
+            System.out.println("Alerta encontrado: " + mensagem);
+            alert.accept();
+
+        } catch (TimeoutException e) {
+            // Nenhum alerta presente, tudo certo
+        }
     }
 
 }

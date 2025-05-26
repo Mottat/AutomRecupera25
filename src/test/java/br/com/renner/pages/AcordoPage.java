@@ -3,6 +3,8 @@ package br.com.renner.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class AcordoPage {
 
     @FindBy(id = "cmdDesmarcarDividas")
@@ -17,11 +19,17 @@ public class AcordoPage {
     @FindBy(xpath = "//*[@class='CldObjDiaHoje']/following::input[@class='CldObjDiasSemana'][1]")
     public static WebElement selectTomorrow;
 
+    @FindBy(xpath = "//input[@value='PARC']")
+    public List<WebElement> produtosParc;
+
     @FindBy(id = "objLista005Corpo_00000_00000")
     public static WebElement checkboxSelectDebt;
 
     @FindBy(id = "cmdMarcarDividas")
     public static WebElement btnSelectAllDebts;
+
+    @FindBy(id = "cmdDesmarcarDividas")
+    public static WebElement btnClearSelectAllDebts;
 
     @FindBy(id = "cmdParcelar")
     public static WebElement btnInstallment;

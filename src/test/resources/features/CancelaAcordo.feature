@@ -6,11 +6,11 @@ Funcionalidade: Cancelar acordo
   Contexto:
     Dado que estou no recupera
 
-  @EsquemaCancelaAcordoCliente
-  Esquema do Cenario: Cancelar acordo
+  @EsqCancAcordoCliente
+  Esquema do Cenario: EsqCancAcordoCliente
     Quando pesquiso cliente com acordo "<cliente>"
     E cancelo acordo
-    Entao acordo cancelado com sucesso "<cliente>"
+    Entao acordo cancelado com sucesso
 
     Exemplos:
       | cliente |
@@ -18,15 +18,26 @@ Funcionalidade: Cancelar acordo
       | CBR     |
 
 
-  @CancelaAcordoCCR
-  Cenario: Cancelar acordo CCR
+  @EsqCancAcordoLista
+  Esquema do Cenario: EsqCancAcordoLista
+    Quando pesquiso clientes com acordo "<cpf>"
+    E cancelo acordo
+    Entao acordo cancelado com sucesso
+
+    Exemplos:
+      | cpf         |
+      | 99455150476 |
+
+
+  @CCRCancAcordo
+  Cenario: CancelaAcordoCCR
     Quando pesquiso cliente com acordo "CCR"
     E cancelo acordo
-    Entao acordo cancelado com sucesso "CCR"
+    Entao acordo cancelado com sucesso
 
 
-  @CancelaAcordoCBR
-  Cenario: Cancelar acordo CBR
+  @CBRCancAcordo
+  Cenario: CancelaAcordoCBR
     Quando pesquiso cliente com acordo "CBR"
     E cancelo acordo
-    Entao acordo cancelado com sucesso "CBR"
+    Entao acordo cancelado com sucesso

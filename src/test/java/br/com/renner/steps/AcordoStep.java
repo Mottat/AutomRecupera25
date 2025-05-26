@@ -7,7 +7,13 @@ import io.cucumber.java.pt.Quando;
 import br.com.renner.interactions.AcordoInteraction;
 import br.com.renner.interactions.ConsultaInteraction;
 import br.com.renner.interactions.LoginInteraction;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
+import static br.com.renner.steps.hook.WebSetup.driver;
 import static br.com.renner.toolbox.RennerTools.*;
 
 public class AcordoStep {
@@ -19,13 +25,11 @@ public class AcordoStep {
     @Dado("que estou na pagina inicial do recupera")
     public void queEstouNaPaginaInicialDoRecupera() {
         trocarParaNovaJanela();
-        loginInteraction.aguardarCampoUser();
         loginInteraction.loginSucesso();
     }
 
-    @Quando("Clico no menu operacao")
-    public void ClicoNoMenuOperacao() {
-        consultaInteraction.aguardarMenuOperacao();
+    @Quando("clico no menu operacao")
+    public void clicoNoMenuOperacao() {
         consultaInteraction.menuOperacao();
     }
 
@@ -35,29 +39,26 @@ public class AcordoStep {
 
         consultaInteraction.codCliente(cliente);
         consultaInteraction.bntConsult();
-        consultaInteraction.abaDivida();
+        consultaInteraction.validaCredor();
         acordoInteraction.desmDivida();
         acordoInteraction.campoPagt();
 
-        acordoInteraction.selectDiaAmanha();
-//        acordoTasks.selectDiaHoje();
+        acordoInteraction.selectDiaHoje();
 
         consultaInteraction.validProduto(cliente);
 
-//        consultaInteraction.validProdutoCCR();
-//        consultaInteraction.validProdutoCBR();//
-
-        // consultaTasks.marcDivida();
         acordoInteraction.marcTodasDividas();
         acordoInteraction.bntParc();
-
 
         selectcCframe1();
 
         acordoInteraction.aguardarBotaoConfirmar();
 
-        acordoInteraction.informarQtd(quantidade);
-        acordoInteraction.informarDesc(desconto);
+//        acordoInteraction.informarQtd(quantidade);
+//        acordoInteraction.informarDesc(desconto);
+        acordoInteraction.informarQtd(String.valueOf(Integer.parseInt(quantidade)));
+        acordoInteraction.informarDesc(String.valueOf(Integer.parseInt(desconto)));
+
         acordoInteraction.bntCalc();
         acordoInteraction.validarParcela();
 
@@ -74,16 +75,15 @@ public class AcordoStep {
 
     @Entao("acordo criado com sucesso")
     public void acordoCriadoComSucesso() throws InterruptedException {
-        Thread.sleep(5000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//input[@value='PARC']")));
 
         acordoInteraction.validParc();
 
         // Sair da tela Operação
-        consultaInteraction.aguardarBotaoSair();
         consultaInteraction.botaoSair();
         defaultContent();
 
-        loginInteraction.aguardarBotaoSair();
         loginInteraction.clicarSair();
     }
 

@@ -36,6 +36,8 @@ import java.util.stream.Collectors;
 
 import static br.com.renner.toolbox.GlobalTools.*;
 import static br.com.renner.toolbox.RennerTools.*;
+import br.com.renner.utils.*;
+
 
 public class WebSetup {
 
@@ -60,11 +62,25 @@ public class WebSetup {
     @Before()
     public void initiate(Scenario scenarioTest) throws MalformedURLException {
 
+//        if (CpfCache.getCpfCCR() == null) {
+//            String cpfCCR = DatabaseUtils.buscarCpfClienteCCR();
+//            CpfCache.setCpfCCR(cpfCCR);
+//        }
+//
+//        if (CpfCache.getCpfCBR() == null) {
+//            String cpfCBR = DatabaseUtils.buscarCpfClienteCBR();
+//            CpfCache.setCpfCBR(cpfCBR);
+//        }
+//
+//        // Agora grava no JSON
+//        JsonUtils.atualizarCpfs();
+
+
         System.out.printf("TESTE %s is started%n", scenarioTest.getName());
         scenarioName = scenarioTest.getName().replaceAll("-", " ");
         scenario = scenarioTest;
         if (build.isEmpty()) {
-            build = "Web-YouCom-Regressivo-" + getExecutionAmbiente();
+            build = "Web-Recupera-Regressivo-" + getExecutionAmbiente();
         }
 
         switch (getExecutionNavegador()) {
@@ -214,7 +230,7 @@ public class WebSetup {
             String tags = String.join(", ", scenarioTest.getSourceTagNames());
             if (reportiumClient == null) {
                 PerfectoExecutionContext perfectoExecutionContext = new PerfectoExecutionContext.PerfectoExecutionContextBuilder()
-                        .withProject(new Project("Web-YouCom-Regressivo-" + getExecutionAmbiente(), "1.0.0"))
+                        .withProject(new Project("Web-Recupera-Regressivo-" + getExecutionAmbiente(), "1.0.0"))
                         .withJob(new Job(build, Integer.parseInt(System.getProperty("buildNumber", "1"))))
                         .withWebDriver(driver)
                         .build();

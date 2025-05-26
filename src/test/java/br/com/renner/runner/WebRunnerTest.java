@@ -9,41 +9,35 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "br.com.renner.steps",
 
-//        tags = "@Login or @ConsultaCCR or @AcordoAVistaSemDescontoCCR or @CancelaAcordoCCR",
-//        tags = "@Login or @ConsultaCBR or @AcordoAVistaSemDescontoCBR or @CancelaAcordoCBR",
-
 //        tags = "@Login",
 
-
-        //// Somente CCR
+        //// CCR
 //        tags = "@ConsultaCCR",
-//        tags = "@AcordoAVistaSemDescontoCCR",
-//        tags = "@AcordoAVistaComDescontoCCR",
-//        tags = "@AcordoParceladoSemDescontoCCR",
-//        tags = "@AcordoParceladoComDescontoCCR",
-//        tags = "@CancelaAcordoCCR",
+//        tags = "@AVistaSemDescontoCCR",
+//        tags = "@AVistaComDescontoCCR",
+//        tags = "@ParceladoSemDescontoCCR",
+//        tags = "@ParceladoComDescontoCCR",
+//        tags = "@CancAcordoCCR",
 
+//        tags = "@Login or @ConsultaCCR or @ParceladoComDescontoCCR or @CancAcordoCCR",
 
-        //// Somente CBR
+        //// CBR
 //        tags = "@ConsultaCBR",
-//        tags = "@AcordoAVistaSemDescontoCBR",
-//        tags = "@AcordoAVistaComDescontoCBR",
-//        tags = "@AcordoParceladoSemDescontoCBR",
-//        tags = "@AcordoParceladoComDescontoCBR",
-//        tags = "@CancelaAcordoCBR",
+//        tags = "@AVistaSemDescontoCBR",
+//        tags = "@AVistaComDescontoCBR",
+//        tags = "@ParceladoSemDescontoCBR",
+//        tags = "@ParceladoComDescontoCBR",
+//        tags = "@CancAcordoCBR",
 
+//        tags = "@Login or @ConsultaCBR or @ParceladoComDescontoCBR or @CancAcordoCBR",
 
         //// Cenários Esquemas
-//        tags = "@EsquemaConsultaCliente",
-//        tags = "@EsquemaAcordoCliente",
-        tags = "@EsquemaCancelaAcordoCliente",
+//        tags = "@EsqConsultaCliente",
+//        tags = "@EsqAcordoCliente",
+//        tags = "@EsqCancAcordoCliente",
+//        tags = "@EsqCancAcordoLista",
 
-
-        //// Todos os cenários
-//        tags = "@Consulta",
-//        tags = "@Acordo",
-//        tags = "@CancelaAcordo",
-
+//        tags = "@Login or @EsqConsultaCliente or @EsqAcordoCliente or @EsqCancAcordoCliente",
 
         plugin = {
                 "pretty",

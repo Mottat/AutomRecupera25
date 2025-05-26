@@ -1,6 +1,5 @@
 package br.com.renner.steps;
 
-import io.cucumber.java.Scenario;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
@@ -15,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static br.com.renner.pages.ConsultaPage.inputTxtCodigo;
 import static br.com.renner.steps.hook.WebSetup.driver;
 import static br.com.renner.toolbox.RennerTools.*;
 
@@ -28,28 +28,38 @@ public class CancAcordoStep {
     @Dado("que estou no recupera")
     public void queEstouNoRecupera() {
         trocarParaNovaJanela();
-        loginInteraction.aguardarCampoUser();
         loginInteraction.loginSucesso();
     }
 
     @Quando("pesquiso cliente com acordo {string}")
     public void pesquisoClienteComAcordo(String cliente) {
-        consultaInteraction.aguardarMenuOperacao();
         consultaInteraction.menuOperacao();
 
         selectIfrmAppPrinc();
 
         consultaInteraction.codCliente(cliente);
         consultaInteraction.bntConsult();
-        consultaInteraction.abaDivida();
+        consultaInteraction.validaCredor();
+    }
+
+    @Quando("pesquiso clientes com acordo {string}")
+    public void pesquisoClientesComAcordo(String cpf) {
+        consultaInteraction.menuOperacao();
+
+        selectIfrmAppPrinc();
+
+        inputTxtCodigo.sendKeys(cpf);
+        consultaInteraction.bntConsult();
+        consultaInteraction.validaCredor();
     }
 
     @E("cancelo acordo")
     public void canceloAcordo() {
-        acordoInteraction.campoPagt();
-        acordoInteraction.selectDiaAmanha();
 
-        acordoInteraction.marcTodasDividas();
+        acordoInteraction.desmTodasDividas();
+
+        acordoInteraction.validarProdtParc();
+
         acordoInteraction.bntParc();
 
         selectcCframe1();
@@ -58,28 +68,22 @@ public class CancAcordoStep {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         Alert alerta = wait.until(ExpectedConditions.alertIsPresent());
-//        Alert alerta = driver.switchTo().alert();
         alerta.accept();
+
     }
 
-    @Entao("acordo cancelado com sucesso {string}")
-    public void acordoCanceladoComSucesso(String cliente) throws InterruptedException {
+    @Entao("acordo cancelado com sucesso")
+    public void acordoCanceladoComSucesso() throws InterruptedException {
         defaultContent();
         selectIfrmAppPrinc();
 
-        Thread.sleep(5000);
+        aguardar(1);
 
-        consultaInteraction.validProduto(cliente);
-
-//        consultaInteraction.validProdutoCCR();
-//        consultaInteraction.validProdutoCBR();//
 
         // Sair da tela Operação
-        consultaInteraction.aguardarBotaoSair();
         consultaInteraction.botaoSair();
         defaultContent();
 
-        loginInteraction.aguardarBotaoSair();
         loginInteraction.clicarSair();
 
     }
