@@ -90,10 +90,6 @@ public class WebSetup {
                 chromeOptions.addArguments("--window-size=1366,768");
                 chromeOptions.addArguments("--disable-notifications");
 
-                WebDriverManager.chromedriver()
-                        .cachePath("src/test/resources/drivers")
-                        .setup();
-
                 seleniumRobotsTool = new SeleniumRobotsBuilder()
                         .timeoutSeconds(1)
                         .pollingSeconds(1)

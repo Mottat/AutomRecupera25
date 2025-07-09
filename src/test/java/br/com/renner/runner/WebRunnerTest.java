@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "br.com.renner.steps",
 
-        tags = "@Login",
+//        tags = "@Login",
 
         //// CCR
 //        tags = "@ConsultaCCR",
@@ -17,9 +17,9 @@ import org.junit.runner.RunWith;
 //        tags = "@AVistaComDescontoCCR",
 //        tags = "@ParceladoSemDescontoCCR",
 //        tags = "@ParceladoComDescontoCCR",
-//        tags = "@CancAcordoCCR",
+//        tags = "@CCRCancAcordo",
 
-//        tags = "@Login or @ConsultaCCR or @ParceladoComDescontoCCR or @CancAcordoCCR",
+        tags = "@Login or @ConsultaCCR or @ParceladoComDescontoCCR or @CCRCancAcordo",
 
         //// CBR
 //        tags = "@ConsultaCBR",
@@ -27,17 +27,15 @@ import org.junit.runner.RunWith;
 //        tags = "@AVistaComDescontoCBR",
 //        tags = "@ParceladoSemDescontoCBR",
 //        tags = "@ParceladoComDescontoCBR",
-//        tags = "@CancAcordoCBR",
+//        tags = "@CBRCancAcordo",
 
-//        tags = "@Login or @ConsultaCBR or @ParceladoComDescontoCBR or @CancAcordoCBR",
+//        tags = "@Login or @ConsultaCBR or @ParceladoComDescontoCBR or @CBRCancAcordo",
 
         //// Cenários Esquemas
 //        tags = "@EsqConsultaCliente",
 //        tags = "@EsqAcordoCliente",
 //        tags = "@EsqCancAcordoCliente",
 //        tags = "@EsqCancAcordoLista",
-
-//        tags = "@Login or @EsqConsultaCliente or @EsqAcordoCliente or @EsqCancAcordoCliente",
 
         plugin = {
                 "pretty",
