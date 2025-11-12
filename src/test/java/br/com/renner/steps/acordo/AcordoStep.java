@@ -7,13 +7,6 @@ import io.cucumber.java.pt.Quando;
 import br.com.renner.interactions.acordo.AcordoInteraction;
 import br.com.renner.interactions.consulta.ConsultaInteraction;
 import br.com.renner.interactions.login.LoginInteraction;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-
-import static br.com.renner.steps.hook.WebSetup.driver;
 import static br.com.renner.toolbox.RennerTools.*;
 
 public class AcordoStep {
@@ -45,8 +38,6 @@ public class AcordoStep {
 
         acordoInteraction.selectDiaHoje();
 
-//        consultaInteraction.validProduto(cliente);
-
         acordoInteraction.marcTodasDividas();
         acordoInteraction.bntParc();
 
@@ -73,8 +64,8 @@ public class AcordoStep {
 
     @Entao("acordo criado com sucesso")
     public void acordoCriadoComSucesso() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//input[@value='PARC']")));
+
+        aguardar(5);
 
         acordoInteraction.validParc();
 
@@ -82,6 +73,9 @@ public class AcordoStep {
         consultaInteraction.botaoSair();
         defaultContent();
 
+        aguardar(1);
+
+        // Sair Recupera
         loginInteraction.clicarSair();
     }
 

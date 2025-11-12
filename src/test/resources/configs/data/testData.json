@@ -1,32 +1,41 @@
 {
-  "Login" : {
-    "user1" : "AUTOM1",
-    "user2" : "AUTOM2",
-    "user3" : "AUTOM3",
-    "pass" : "renner100"
-  },
-  "Consulta" : {
-    "user1" : "AUTOM1",
-    "user2" : "AUTOM2",
-    "user3" : "AUTOM3",
-    "pass" : "renner100",
-    "cntCCR" : "52804217078",
-    "cntCBR" : "86398296168"
-  },
-  "Acordo" : {
-    "user1" : "AUTOM1",
-    "user2" : "AUTOM2",
-    "user3" : "AUTOM3",
-    "pass" : "renner100",
-    "cntCCR" : "52804217078",
-    "cntCBR" : "86398296168"
-  },
-  "CancelaAcordo" : {
-    "user1" : "AUTOM1",
-    "user2" : "AUTOM2",
-    "user3" : "AUTOM3",
-    "pass" : "renner100",
-    "cntCCR" : "52804217078",
-    "cntCBR" : "86398296168"
-  }
+    "Acordo": {
+        "user1": "AUTOM1",
+        "user2": "AUTOM2",
+        "pass": "renner100",
+        "cntCBR": "98929462863",
+        "cntCCR": "80343520044",
+        "user3": "AUTOM3"
+    },
+    "CancelaAcordo": {
+        "user1": "AUTOM1",
+        "user2": "AUTOM2",
+        "pass": "renner100",
+        "cntCBR": "98929462863",
+        "cntCCR": "80343520044",
+        "user3": "AUTOM3"
+    },
+    "GerarReneg": {
+        "user1": "AUTOM1",
+        "user2": "AUTOM2",
+        "pass": "renner100",
+        "cntCBR": "98929462863",
+        "codReceb": "38190277",
+        "cntCCR": "80343520044",
+        "user3": "AUTOM3"
+    },
+    "Consulta": {
+        "user1": "AUTOM1",
+        "user2": "AUTOM2",
+        "pass": "renner100",
+        "cntCBR": "98929462863",
+        "cntCCR": "80343520044",
+        "user3": "AUTOM3"
+    },
+    "Login": {
+        "user1": "AUTOM1",
+        "user2": "AUTOM2",
+        "pass": "renner100",
+        "user3": "AUTOM3"
+    }
 }

@@ -6,6 +6,8 @@ public class ConsultaPage {
 
     public static By menuOperation() { return By.xpath("//td[text()='Operação']"); }
 
+//    public static By inputTxtCodigo() { return By.id("txtCpfCnpj"); }
+
     public static By inputTxtCodigo() { return By.id("txtCodigo"); }
 
     public static By searchButton() { return By.id("cmdConsultar"); }

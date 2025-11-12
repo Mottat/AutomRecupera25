@@ -26,16 +26,18 @@ Funcionalidade: Cancelar acordo
 
     Exemplos:
       | cpf         |
-      | 99090541675 |
+#      | 21825210381 |
+#      | 27467430787 |
+      | 28586735000 |
 
-  @CCRCancAcordo
+  @CancAcordoCCR
   Cenario: CancelaAcordoCCR
     Quando pesquiso cliente com acordo "CCR"
     E cancelo acordo
     Entao acordo cancelado com sucesso
 
 
-  @CBRCancAcordo
+  @CancAcordoCBR
   Cenario: CancelaAcordoCBR
     Quando pesquiso cliente com acordo "CBR"
     E cancelo acordo

@@ -109,7 +109,7 @@ public class AcordoInteraction extends AcordoPage {
     }
 
     public void validParc(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement campo = wait.until(ExpectedConditions.visibilityOf(seleniumRobotsTool.getElement(txtValidateInstallment())));
         String valorCampo = campo.getAttribute("value");
         assertEquals("PARC", valorCampo);

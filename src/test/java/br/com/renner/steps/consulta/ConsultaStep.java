@@ -17,8 +17,6 @@ public class ConsultaStep {
     public void queEstouNaPaginaDoRecupera() {
         trocarParaNovaJanela();
         loginInteraction.loginSucesso();
-        // Não precisa fazer login novamente, pois já foi feito no LoginStep
-        // Não precisa trocar de janela novamente, pois já foi feito no LoginStep
     }
 
     @Quando("Clico em operacao")
@@ -33,12 +31,12 @@ public class ConsultaStep {
         consultaInteraction.bntConsult();
         consultaInteraction.validaCredor();
         consultaInteraction.validProduto(cliente);
-        consultaInteraction.botaoSair();
-        defaultContent();
     }
 
     @Entao("consulta realizada com sucesso")
     public void consultaRealizadaComSucesso() {
-        // Não precisa clicar em sair novamente, pois já foi feito no LoginStep
+        consultaInteraction.botaoSair();
+        defaultContent();
+        loginInteraction.clicarSair();
     }
 }
