@@ -5,9 +5,16 @@ Funcionalidade: Criar renegociação
   Contexto:
     Dado que estou logado recupera
 
-  @CriarReneg
+  @CriarRenegCCR
   Cenario: CriarReneg
     Quando consulto codigo de recebimento "CCR"
+    E realizo o pagamento do boleto
+    E executo a tarefa de geracao de renegociacao
+    Então a renegociacao e criada com sucesso
+
+  @CriarRenegCBR
+  Cenario: CriarReneg
+    Quando consulto codigo de recebimento "CBR"
     E realizo o pagamento do boleto
     E executo a tarefa de geracao de renegociacao
     Então a renegociacao e criada com sucesso

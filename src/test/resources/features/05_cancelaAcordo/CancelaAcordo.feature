@@ -27,7 +27,7 @@ Funcionalidade: Cancelar acordo
     Exemplos:
       | cpf         |
 #      | 21825210381 |
-#      | 27467430787 |
+      | 27467430787 |
       | 28586735000 |
 
   @CancAcordoCCR

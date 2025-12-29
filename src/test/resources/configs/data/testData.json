@@ -4,7 +4,7 @@
         "user2": "AUTOM2",
         "pass": "renner100",
         "cntCBR": "98929462863",
-        "cntCCR": "80343520044",
+        "cntCCR": "21870458389",
         "user3": "AUTOM3"
     },
     "CancelaAcordo": {
@@ -12,7 +12,7 @@
         "user2": "AUTOM2",
         "pass": "renner100",
         "cntCBR": "98929462863",
-        "cntCCR": "80343520044",
+        "cntCCR": "21870458389",
         "user3": "AUTOM3"
     },
     "GerarReneg": {
@@ -20,8 +20,8 @@
         "user2": "AUTOM2",
         "pass": "renner100",
         "cntCBR": "98929462863",
-        "codReceb": "38190277",
-        "cntCCR": "80343520044",
+        "codReceb": "38190390",
+        "cntCCR": "21870458389",
         "user3": "AUTOM3"
     },
     "Consulta": {
@@ -29,7 +29,7 @@
         "user2": "AUTOM2",
         "pass": "renner100",
         "cntCBR": "98929462863",
-        "cntCCR": "80343520044",
+        "cntCCR": "21870458389",
         "user3": "AUTOM3"
     },
     "Login": {

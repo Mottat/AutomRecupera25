@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static br.com.renner.steps.hook.WebSetup.*;
+import static br.com.renner.toolbox.RennerTools.aguardar;
 import static org.junit.Assert.assertEquals;
 
 public class AcordoInteraction extends AcordoPage {
@@ -109,6 +110,7 @@ public class AcordoInteraction extends AcordoPage {
     }
 
     public void validParc(){
+        aguardar(10);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement campo = wait.until(ExpectedConditions.visibilityOf(seleniumRobotsTool.getElement(txtValidateInstallment())));
         String valorCampo = campo.getAttribute("value");

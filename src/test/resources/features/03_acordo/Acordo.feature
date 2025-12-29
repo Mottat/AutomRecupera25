@@ -80,7 +80,7 @@ Funcionalidade: Fazer acordo
   @ParceladoComDescontoCBR
   Cenario: ParceladoComDescontoCBR
     Quando clico no menu operacao
-    E faço um acordo "CBR" e "10" e "50"
+    E faço um acordo "CBR" e "5" e "50"
     Entao acordo criado com sucesso
 
 

@@ -57,8 +57,10 @@ public class CancAcordoStep {
 
     @E("cancelo acordo")
     public void canceloAcordo() {
+        aguardar(2);
 
         acordoInteraction.desmTodasDividas();
+        acordoInteraction.campoPagt();
 
         acordoInteraction.validarProdtParc();
 

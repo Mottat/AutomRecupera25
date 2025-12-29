@@ -9,8 +9,6 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "br.com.renner.steps",
 
-//        tags = "@CriarReneg",
-
 //        tags = "@Login",
 
         //// CCR
@@ -19,9 +17,10 @@ import org.junit.runner.RunWith;
 //        tags = "@AVistaComDescontoCCR",
 //        tags = "@ParceladoSemDescontoCCR",
 //        tags = "@ParceladoComDescontoCCR",
+//        tags = "@CriarRenegCCR",
 //        tags = "@CancAcordoCCR",
 
-        tags = "@Login or @ConsultaCCR or @AVistaSemDescontoCCR or @CriarReneg or @CancAcordoCCR",
+//        tags = "@Login or @ConsultaCCR or @AVistaSemDescontoCCR or @CriarRenegCCR or @CancAcordoCCR",
 
         //// CBR
 //        tags = "@ConsultaCBR",
@@ -29,9 +28,10 @@ import org.junit.runner.RunWith;
 //        tags = "@AVistaComDescontoCBR",
 //        tags = "@ParceladoSemDescontoCBR",
 //        tags = "@ParceladoComDescontoCBR",
+//        tags = "@CriarRenegCBR",
 //        tags = "@CancAcordoCBR",
 
-//        tags = "@Login or @ConsultaCBR or @ParceladoComDescontoCBR or @CancAcordoCBR",
+        tags = "@Login or @ConsultaCBR or @ParceladoComDescontoCBR or @CriarRenegCBR or @CancAcordoCBR",
 
         //// Cenários Esquemas
 //        tags = "@EsqConsultaCliente",
