@@ -52,7 +52,7 @@ src/
 │   │                   ├── GerarReneg/
 │   │                   │   └── GerarRenegStep.java
 │   │                   ├── hook/
-│   │                   │   └── .java
+│   │                   │   └── WebSetup.java
 │   │                   └── login/
 │   │                       └── LoginStep.java
 │   │               └── toolbox/
