@@ -18,21 +18,89 @@ src/
 │   │   └── br/
 │   │       └── com/
 │   │           └── renner/
-│   │               ├── runner/
-│   │               │   └── WebRunnerTest.java
+│   │               └── interactions/
+│   │                   ├── acordo/
+│   │                   │   └── AcordoInteraction.java
+│   │                   ├── cancAcordo/
+│   │                   │   └── CancAcordoInteraction.java
+│   │                   ├── consulta/
+│   │                   │   └── consultaAcordoInteraction.java
+│   │                   ├── GerarReneg/
+│   │                   │   └── GerarRenegInteraction.java
+│   │                   └── login/
+│   │                       └── LoginInteraction.java
+│   │               └── pages/
+│   │                   ├── acordo/
+│   │                   │   └── AcordoPage.java
+│   │                   ├── cancAcordo/
+│   │                   │   └── CancAcordoPage.java
+│   │                   ├── consulta/
+│   │                   │   └── consultaAcordoPage.java
+│   │                   ├── GerarReneg/
+│   │                   │   └── GerarRenegPage.java
+│   │                   └── login/
+│   │                       └── LoginPage.java
+│   │               └── runner/
+│   │                   └── WebRunnerTest.java
 │   │               └── steps/
-│   │                   └── AcordoStep.java
+│   │                   ├── acordo/
+│   │                   │   └── AcordoStep.java
+│   │                   ├── cancAcordo/
+│   │                   │   └── CancAcordoStep.java
+│   │                   ├── consulta/
+│   │                   │   └── consultaAcordoStep.java
+│   │                   ├── GerarReneg/
+│   │                   │   └── GerarRenegStep.java
+│   │                   ├── hook/
+│   │                   │   └── .java
+│   │                   └── login/
+│   │                       └── LoginStep.java
+│   │               └── toolbox/
+│   │                   ├── GlobalTools.java
+│   │                   ├── RennerTools.java
+│   │                   └── SetupTestRunProperties.java
+│   │               └── utils/
+│   │                   ├── ConsultaCliente.java
+│   │                   ├── CpfCache.java
+│   │                   ├── DatabaseUtils.java
+│   │                   └── JsonUtils.java
 │   └── resources/
+│       └── configs/
+│           └── data/
+│               └── testData.json
 │       └── features/
-│           └── Acordo.feature
+│           ├── 01_login/
+│           │   └── Login.feature
+│           ├── 02_consulta/
+│           │   └── Consutla.feature
+│           ├── 03_acordo/
+│           │   └── Acordo.feature
+│           ├── 04_gerarReneg/
+│           │   └── GerarReneg.feature
+│           └── 05_cancelaACordo/
+│               └── CancelaAcordo.feature
+│       └── imagens/
+│           └── img.png
 ```
 
 ## Funcionalidades Testadas
+### Login
+- Login com usuario valido
+
+### Consulta
+- Consulta cliente com divida (CCR e CBR)
+
 ### Acordos
 - Acordos à vista sem desconto (CCR e CBR)
 - Acordos à vista com desconto (CCR e CBR)
 - Acordos parcelados sem desconto (CCR e CBR)
 - Acordos parcelados com desconto (CCR e CBR)
+
+### Gerar Reneg
+- Gerar Reneg (CCR e CBR)
+
+### Cancela Acordo
+- Cancela Acordo (CCR e CBR)
 
 ## Pré-requisitos
 - Java 11 instalado
@@ -63,17 +131,25 @@ Os relatórios são gerados automaticamente após a execução dos testes no dir
 - XML: `reports/cucumber.xml`
 
 ## Tags Disponíveis
+- @Login
+
 ### CCR
+- @ConsultaCCR
 - @AVistaSemDescontoCCR
 - @AVistaComDescontoCCR
 - @ParceladoSemDescontoCCR
 - @ParceladoComDescontoCCR
+- @CriarRenegCCR
+- @CancAcordoCCR
 
 ### CBR
+- @ConsultaCBR
 - @AVistaSemDescontoCBR
 - @AVistaComDescontoCBR
 - @ParceladoSemDescontoCBR
 - @ParceladoComDescontoCBR
+- @CriarRenegCBR
+- @CancAcordoCBR
 
 ## Manutenção
 Para adicionar novos cenários:
