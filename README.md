@@ -1,7 +1,7 @@
 # AutomRecupera25
 
 ## Descrição
-Projeto de automação de testes para o sistema Recupera, focado na funcionalidade de acordos para clientes CCR e CBR.
+Projeto de automação de testes para o sistema Recupera, focado nas funcionalidades para clientes CCR e CBR.
 
 ## Tecnologias Utilizadas
 - Java 11
